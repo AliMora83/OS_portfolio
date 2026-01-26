@@ -343,7 +343,7 @@ export const Project: ProjectItemType[] = [
       imgdata.maingym,
       imgdata.cart,
       imgdata.contacnt,
-      imgdata.billing,
+      // imgdata.billing,
       imgdata.shippinggym,
       imgdata.singleproductgym,
     ],

@@ -22,7 +22,7 @@ export const imgdata = {
   mainDog,
   res,
   // gym
-  billing,
+  // billing,
   cart,
   contacnt,
   maingym,

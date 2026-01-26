@@ -19,7 +19,7 @@ import {
   Project,
   MainProjects,
 } from '../DataUtils'
-import { addDoc, collection, onSnapshot, query } from 'firebase/firestore'
+// import { addDoc, collection, onSnapshot, query } from 'firebase/firestore'
 type Action = {
   type: string
   payload: string
@@ -97,16 +97,17 @@ export const PortfolioContextProvider = ({
   )
   const [miniProjects, setMiniProjects] = useState<ProjectItemType[]>(Project)
   useEffect(() => {
-    const q = query(collection(db, 'portfolio-projects'))
-    const unsub = onSnapshot(q, (querrySnapshot) => {
-      let data: any = []
-      querrySnapshot.forEach((doc: any) => {
-        data.push({ ...doc.data(), id: doc.id })
-      })
-      setProjectsData([...projectsData, ...mainProjectsData, ...data])
-    })
-    // console.log(projectsData)
-    return () => unsub()
+    // Mock data injection instead of Firebase
+    // const q = query(collection(db, 'portfolio-projects'))
+    // const unsub = onSnapshot(q, (querrySnapshot) => {
+    //   let data: any = []
+    //   querrySnapshot.forEach((doc: any) => {
+    //     data.push({ ...doc.data(), id: doc.id })
+    //   })
+    //   setProjectsData([...projectsData, ...mainProjectsData, ...data])
+    // })
+    // return () => unsub()
+    setProjectsData([...projectsData, ...mainProjectsData])
   }, [])
   // useEffect(() => {
   //   // console.log(projectsData)
@@ -217,13 +218,15 @@ export const PortfolioContextProvider = ({
     e.preventDefault()
     if (email !== '' && topic !== '' && mainMessage !== '') {
       try {
-        await addDoc(collection(db, 'emails'), {
-          date: new Date(),
-          email,
-          topic,
-          mainMessage,
-        })
-        setContactError('Email has been sent')
+        // Mock email sending
+        // await addDoc(collection(db, 'emails'), {
+        //   date: new Date(),
+        //   email,
+        //   topic,
+        //   mainMessage,
+        // })
+        console.log('Mock email sent:', { email, topic, mainMessage })
+        setContactError('Email has been sent (Mock)')
         setEmail('')
         setTopic('')
         setMainMessage('Write....')
@@ -243,34 +246,48 @@ export const PortfolioContextProvider = ({
   }
 
   // learning stack setState data
-  const [learnStack, setLearnStack] = useState<LearningData[]>([])
+  const [learnStack, setLearnStack] = useState<LearningData[]>([
+      {
+          img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1200px-React-icon.svg.png',
+          title: 'React',
+          color: '#61DAFB'
+      },
+      {
+          img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/1200px-Typescript_logo_2020.svg.png',
+          title: 'TypeScript',
+          color: '#3178C6'
+      }
+  ])
 
   // taking blog info from firebase
 
   // console.log(projectsData)
 
-  const [blogData, setBlogData] = useState<BlogDataType[]>([])
+  const [blogData, setBlogData] = useState<BlogDataType[]>([
+      {
+          dec: 'This is a mock blog post description.',
+          img: 'https://via.placeholder.com/150',
+          time: '2023-10-27',
+          type: 'blog',
+          id: 'mock-1',
+          title: 'Mock Blog Post 1'
+      }
+  ])
   const [mappedBlogData, setMappedBlogData] = useState<BlogDataType[]>([])
   const DataPullerFireBase = (
     setData: React.Dispatch<React.SetStateAction<any | unknown>>,
     dataBaseTitle: string,
   ) => {
-    console.log('blog')
-    const q = query(collection(db, dataBaseTitle))
-    const unsub = onSnapshot(q, (querrSnapShot) => {
-      let data: any = []
-      querrSnapShot.forEach((doc: any) => {
-        data.push({ ...doc.data(), id: doc.id })
-      })
-      setData(data)
-    })
-    return () => unsub()
+    console.log('Mock Data Puller called for:', dataBaseTitle)
+    // Mock implementation - do nothing as state is pre-filled or handled elsewhere
+    return () => {}
   }
   // pulling data from firebase with function
   useEffect(() => {
-    DataPullerFireBase(setBlogData, 'blog')
-    DataPullerFireBase(setLearnStack, 'learning-stack')
-
+    // DataPullerFireBase(setBlogData, 'blog')
+    // DataPullerFireBase(setLearnStack, 'learning-stack')
+    
+    // In mock mode, we just let the initial state take over
     console.log(blogData)
   }, [])
 
