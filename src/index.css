@@ -1,206 +1,41 @@
-@import url('https://fonts.googleapis.com/css2?family=Kanit:ital@1&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative&family=Fruktur&family=Khula&family=Staatliches&family=Tillana&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-* {
-  user-select: none;
+:root {
+  --indigo: #1d2b6b;
+  --ink: #0f1638;
+  --chalk: #f4f6fb;
+  --ochre: #e3a22b;
+  --slate: #59627a;
 }
 
-.aboutParagraph {
-  font-family: 'Kanit', sans-serif;
+html,
+body,
+#root {
+  height: 100%;
 }
 
-.displayGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(25rem, 26rem));
-  gap: 50px;
+body {
+  margin: 0;
+  font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+  color: var(--ink);
+  background: var(--indigo);
 }
 
-.bg-img {
-  background: linear-gradient(135deg, #0d1117 0%, #1a1625 50%, #0d1117 100%);
-  position: relative;
+.wallpaper {
+  background-color: var(--indigo);
 }
 
-/* Glassmorphism Utilities - GitHub Style */
-.glass {
-  background: rgba(22, 27, 34, 0.6);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(110, 118, 129, 0.2);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+:focus-visible {
+  outline: 2px solid var(--ochre);
+  outline-offset: 2px;
 }
 
-.glass-dark {
-  background: rgba(13, 17, 23, 0.8);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(48, 54, 61, 0.4);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
-}
-
-.glass-purple {
-  background: rgba(22, 27, 34, 0.4);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(34, 211, 238, 0.3);
-  box-shadow: none;
-  transition: all 0.3s ease;
-}
-
-.glass-purple:hover {
-  border: 1px solid rgba(34, 211, 238, 0.6);
-  box-shadow: 0 0 20px rgba(34, 211, 238, 0.3);
-}
-
-/* Glass Frame - Cyan/Teal Style Wrapper */
-.glass-frame {
-  background: transparent;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(34, 211, 238, 0.2);
-  border-radius: 60px;
-  padding: 0px;
-  box-shadow: none;
-  transition: all 0.3s ease;
-}
-
-.glass-frame:hover {
-  border: 1px solid rgba(34, 211, 238, 0.5);
-  box-shadow: 0 0 15px rgba(34, 211, 238, 0.25);
-  transform: scale(1.05);
-}
-
-/* .bg-purple-img {
-  background-image: url('./assets/background/purpleLay.jpg');
-
-  position: relative;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center bottom;
-} */
-.bg-section-purple {
-  background-image: url('./assets/background/blueBg.jpg');
-
-  position: relative;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center bottom;
-}
-
-.bg-aboutBg-purple {
-  background-image: url('./assets/background/aboutBG.jpg');
-
-  position: relative;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center bottom;
-}
-
-.bg-projectBg-purple {
-  background-image: url('./assets/background/purpleProject.jpg');
-
-  position: relative;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center bottom;
-}
-
-.bg-skills-purple {
-  background-image: url('./assets/background/skillspurplebg.jpg');
-
-  position: relative;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center bottom;
-}
-
-.zindex {
-  z-index: 100000;
-}
-
-.textshaddow {
-  text-shadow: 0px 0px 3px rgba(255, 0, 0, 1);
-}
-
-.blacktextshaddow {
-  text-shadow: 1px 2px 0px rgb(0, 0, 0);
-}
-
-.generalBoxShaddow {
-  box-shadow: 3px 4px 5px -4px rgba(0, 0, 0, 0.74);
-  -webkit-box-shadow: 3px 4px 5px -4px rgba(0, 0, 0, 0.74);
-  -moz-box-shadow: 3px 4px 5px -4px rgba(0, 0, 0, 0.74);
-}
-
-.boxShaddow {
-  box-shadow: 2px -3px 0px 0px #a74318;
-  -webkit-box-shadow: 2px -3px 0px 0px #a74318;
-  -moz-box-shadow: 2px -3px 0px 0px #a74318;
-}
-
-.cardBoxShaddow {
-  box-shadow: 0px 0px 0px 2px rgba(167, 67, 24, 1);
-  -webkit-box-shadow: 0px 0px 0px 2px rgba(167, 67, 24, 1);
-  -moz-box-shadow: 0px 0px 0px 2px rgba(167, 67, 24, 1);
-}
-
-.cardBoxShaddow:hover {
-  box-shadow: 0px 0px 9px 2px rgb(236, 116, 65);
-  -webkit-box-shadow: 0px 0px 9px 2px rgb(236, 116, 65);
-  -moz-box-shadow: 0px 0px 9px 2px rgb(236, 116, 65);
-}
-
-.cardBoxOn {
-  box-shadow: 0px 0px 11px 5px rgb(236, 116, 65);
-  -webkit-box-shadow: 0px 0px 11px 5px rgb(236, 116, 65);
-  -moz-box-shadow: 0px 0px 11px 5px rgb(236, 116, 65);
-}
-
-.menuBoxShaddowPurple {
-  box-shadow: 0px -10px 17px 0px rgba(249, 78, 165, 0.89);
-  -webkit-box-shadow: 0px -10px 17px 0px rgba(249, 78, 165, 0.89);
-  -moz-box-shadow: 0px -10px 17px 0px rgba(249, 78, 165, 0.89);
-}
-
-.cardBoxShaddowPurple {
-  box-shadow: 0px 0px 9px 2px #f94ea5;
-  -webkit-box-shadow: 0px 0px 9px 2px #f94ea5;
-  -moz-box-shadow: 0px 0px 9px 2px #f94ea5;
-}
-
-.cardBoxShaddowPurple:hover {
-  box-shadow: 0px 0px 16px 3px rgba(249, 78, 165, 1);
-  -webkit-box-shadow: 0px 0px 16px 3px rgba(249, 78, 165, 1);
-  -moz-box-shadow: 0px 0px 16px 3px rgba(249, 78, 165, 1);
-}
-
-.cardBoxOnPurple {
-  box-shadow: 0px 0px 11px 5px #f94ea5;
-  -webkit-box-shadow: 0px 0px 11px 5px #f94ea5;
-  -moz-box-shadow: 0px 0px 11px 5px #f94ea5;
-}
-
-.purpleBackground {
-  background: rgb(62, 0, 94);
-  background: linear-gradient(129deg,
-      rgba(62, 0, 94, 1) 0%,
-      rgba(0, 203, 187, 1) 100%);
-}
-
-.projectPFont {
-  font-family: 'Tillana', cursive;
-}
-
-.projectHeader {
-  font-family: 'Tillana', cursive;
-}
-
-.folderFont {
-  font-family: 'Khula', sans-serif;
-}
-
-.folderHeader {
-  font-family: 'Cinzel Decorative', cursive;
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
 }
