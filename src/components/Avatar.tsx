@@ -1,6 +1,6 @@
 import { profile } from '../data/profile'
 
-// Set profile.photo = true and add src/assets/ali.jpg to show a photo instead of initials.
+// Shows src/assets/ali.(jpg|jpeg|png|webp) when profile.photo is true, otherwise initials.
 const photos = import.meta.glob('../assets/ali.{jpg,jpeg,png,webp}', { eager: true, as: 'url' })
 const photoUrl = Object.values(photos)[0] as string | undefined
 

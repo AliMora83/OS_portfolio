@@ -1,14 +1,11 @@
 // Desktop furniture: wallpaper, menu bar, desktop icons, widgets and Dock.
 import { ReactNode } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { apps, glyphColor } from './apps'
-import { profile } from '../data/profile'
+import { App, apps } from './apps'
+import { github, linkedin, profile } from '../data/profile'
 import { dateFmt, timeFmt, useNow, useRotate } from '../hooks'
 import Avatar from './Avatar'
 import { FileIcon, FolderIcon, Glyph, GitHubMark, LinkedInMark, paths } from './icons'
-
-const github = profile.links.find((l) => l.label === 'GitHub')
-const linkedin = profile.links.find((l) => l.label === 'LinkedIn')
 
 export function Wallpaper() {
   return (
@@ -205,6 +202,28 @@ export function AppTile({ glyph, tile, color, size = 52, children }: { glyph?: s
   )
 }
 
+export const AppIcon = ({ app, size }: { app: App; size?: number }) => (
+  <AppTile glyph={app.glyph} tile={app.tile} color={app.ink} size={size} />
+)
+
+export const CvTile = ({ size = 52 }: { size?: number }) => (
+  <AppTile tile="linear-gradient(160deg,#fff,#e9ecf5)" color="#d9644a" size={size}>
+    <span className="font-extrabold" style={{ fontSize: size * 0.29 }}>CV</span>
+  </AppTile>
+)
+
+export const GitHubTile = ({ size = 52 }: { size?: number }) => (
+  <AppTile tile="linear-gradient(160deg,#2b3247,#0f1638)" color="#fff" size={size}>
+    <GitHubMark size={size * 0.52} />
+  </AppTile>
+)
+
+export const LinkedInTile = ({ size = 52 }: { size?: number }) => (
+  <AppTile tile="linear-gradient(160deg,#2d7fd3,#0a5bb0)" color="#fff" size={size}>
+    <LinkedInMark size={size * 0.48} />
+  </AppTile>
+)
+
 function DockItem({ label, active, onClick, href, children }: { label: string; active?: boolean; onClick?: () => void; href?: string; children: ReactNode }) {
   const cls = 'group relative flex flex-col items-center outline-none'
   const body = (
@@ -237,33 +256,27 @@ export function Dock({ activeId }: { activeId?: string }) {
         {apps.map((a) => (
           <li key={a.id}>
             <DockItem label={a.label} active={activeId === a.id} onClick={() => navigate(activeId === a.id ? '/desktop' : `/${a.id}`)}>
-              <AppTile glyph={a.glyph} tile={a.tile} color={glyphColor(a.id)} />
+              <AppIcon app={a} />
             </DockItem>
           </li>
         ))}
         <li>
           <DockItem label="Résumé.pdf" href={profile.resumeUrl}>
-            <AppTile tile="linear-gradient(160deg,#fff,#e9ecf5)" color="#d9644a">
-              <span className="text-[15px] font-extrabold">CV</span>
-            </AppTile>
+            <CvTile />
           </DockItem>
         </li>
         <li aria-hidden className="mx-1 mb-3 h-10 w-px self-center bg-white/25" />
         {github && (
           <li>
             <DockItem label="GitHub" href={github.url}>
-              <AppTile tile="linear-gradient(160deg,#2b3247,#0f1638)" color="#fff">
-                <GitHubMark size={28} />
-              </AppTile>
+              <GitHubTile />
             </DockItem>
           </li>
         )}
         {linkedin && (
           <li>
             <DockItem label="LinkedIn" href={linkedin.url}>
-              <AppTile tile="linear-gradient(160deg,#2d7fd3,#0a5bb0)" color="#fff">
-                <LinkedInMark size={26} />
-              </AppTile>
+              <LinkedInTile />
             </DockItem>
           </li>
         )}

@@ -1,14 +1,11 @@
 // Mobile layout (< 768px): a phone home screen instead of draggable windows.
 import { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
-import { apps, findApp, glyphColor } from './apps'
-import { profile, projects } from '../data/profile'
+import { apps, findApp } from './apps'
+import { github, linkedin, profile, projects } from '../data/profile'
 import { timeFmt, useDocTitle, useNow } from '../hooks'
-import { AppTile, NowBuildingWidget, ProfileWidget, Wallpaper } from './Chrome'
-import { GitHubMark, Glyph, LinkedInMark, paths } from './icons'
-
-const github = profile.links.find((l) => l.label === 'GitHub')
-const linkedin = profile.links.find((l) => l.label === 'LinkedIn')
+import { AppIcon, AppTile, CvTile, GitHubTile, LinkedInTile, NowBuildingWidget, ProfileWidget, Wallpaper } from './Chrome'
+import { Glyph, paths } from './icons'
 
 function StatusBar({ dark }: { dark?: boolean }) {
   const now = useNow()
@@ -39,12 +36,6 @@ function HomeApp({ label, children, to, href }: { label: string; children: React
   )
 }
 
-const cvTile = (size: number) => (
-  <AppTile tile="linear-gradient(160deg,#fff,#e9ecf5)" color="#d9644a" size={size}>
-    <span className="text-[17px] font-extrabold">CV</span>
-  </AppTile>
-)
-
 function Home() {
   useDocTitle()
   const appsInGrid = apps.filter((a) => a.id !== 'contact')
@@ -62,30 +53,26 @@ function Home() {
             {appsInGrid.map((a) => (
               <li key={a.id}>
                 <HomeApp label={a.label} to={`/${a.id}`}>
-                  <AppTile glyph={a.glyph} tile={a.tile} color={glyphColor(a.id)} size={60} />
+                  <AppIcon app={a} size={60} />
                 </HomeApp>
               </li>
             ))}
             <li>
               <HomeApp label="Résumé" href={profile.resumeUrl}>
-                {cvTile(60)}
+                <CvTile size={60} />
               </HomeApp>
             </li>
             {github && (
               <li>
                 <HomeApp label="GitHub" href={github.url}>
-                  <AppTile tile="linear-gradient(160deg,#2b3247,#0f1638)" color="#fff" size={60}>
-                    <GitHubMark size={30} />
-                  </AppTile>
+                  <GitHubTile size={60} />
                 </HomeApp>
               </li>
             )}
             {linkedin && (
               <li>
                 <HomeApp label="LinkedIn" href={linkedin.url}>
-                  <AppTile tile="linear-gradient(160deg,#2d7fd3,#0a5bb0)" color="#fff" size={60}>
-                    <LinkedInMark size={28} />
-                  </AppTile>
+                  <LinkedInTile size={60} />
                 </HomeApp>
               </li>
             )}
@@ -101,17 +88,17 @@ function Home() {
           <ul className="flex justify-around rounded-[30px] border border-white/20 bg-white/[0.14] px-4 py-3 backdrop-blur-2xl">
             <li>
               <Link to="/projects" aria-label="Projects">
-                <AppTile glyph={apps[0].glyph} tile={apps[0].tile} color="#fff" size={58} />
+                <AppIcon app={findApp('projects')!} size={58} />
               </Link>
             </li>
             <li>
               <a href={profile.resumeUrl} target="_blank" rel="noreferrer" aria-label="Résumé">
-                {cvTile(58)}
+                <CvTile size={58} />
               </a>
             </li>
             <li>
               <Link to="/contact" aria-label="Mail">
-                <AppTile glyph={paths.mail} tile={findApp('contact')!.tile} color="#fff" size={58} />
+                <AppIcon app={findApp('contact')!} size={58} />
               </Link>
             </li>
           </ul>

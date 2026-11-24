@@ -136,3 +136,6 @@ export const skills: { group: string; items: string[] }[] = [
   { group: 'Ship & automate', items: ['Docker', 'Linux VPS', 'Cloudflare', 'n8n', 'Claude Code'] },
   { group: 'Design', items: ['Figma', 'Canva', 'Kittl', 'Brand identity', '3D / CAD'] },
 ]
+
+export const github = profile.links.find((l) => l.label === 'GitHub')
+export const linkedin = profile.links.find((l) => l.label === 'LinkedIn')
