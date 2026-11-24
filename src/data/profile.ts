@@ -34,6 +34,10 @@ export const profile = {
   ],
   credentials: ['Odoo 18 Certified Developer (2025)'],
   nowBuilding: ['Namka Compliance Engine', 'SmartPress v2', 'A 3D-printed smart RC car'],
+  // Shown in the menu bar and widgets. Set to '' to hide.
+  availability: 'Open to remote SE roles',
+  // Put a public copy of your CV at public/resume.pdf (no home address, phone numbers or referees).
+  resumeUrl: './resume.pdf',
 }
 
 export type Project = {
@@ -43,13 +47,18 @@ export type Project = {
   summary: string
   url?: string
   urlLabel?: string
+  repo?: string
   stack: string[]
+  // Recruiter-first fields shown in the preview pane and Quick Look
+  role?: string // e.g. 'Solo: design, build, ship'
+  outcome?: string // one line of impact: users, speed, revenue, adoption. Hidden when empty.
 }
 
 // Descriptions are first drafts — tighten them in your own words.
 export const projects: Project[] = [
   {
     id: 'smartpress',
+    role: 'Solo: design, build, ship',
     title: 'SmartPress',
     kind: 'Web tool',
     summary:
@@ -60,6 +69,7 @@ export const projects: Project[] = [
   },
   {
     id: 'kora',
+    role: 'Solo: design, build, ship',
     title: 'Kora Tutor',
     kind: 'AI product',
     summary: 'An AI tutor built under the Namka umbrella.',
@@ -69,6 +79,7 @@ export const projects: Project[] = [
   },
   {
     id: 'compound-calc',
+    role: 'Solo: design, build, ship',
     title: 'Compound Calculator',
     kind: 'Finance tool',
     summary: 'A compound-interest calculator for South African savers.',
@@ -78,6 +89,7 @@ export const projects: Project[] = [
   },
   {
     id: 'financial-alphabet',
+    role: 'Founder: brand, writing, design',
     title: 'Financial Alphabet',
     kind: 'Brand & digital products',
     summary:
@@ -85,6 +97,16 @@ export const projects: Project[] = [
     url: 'https://pennysbooks.gumroad.com/l/encpcb',
     urlLabel: 'Financial Alphabet on Gumroad',
     stack: ['Book', 'Flashcards', 'Free activity page'],
+  },
+  {
+    id: 'clipvault',
+    role: 'Solo: design and build',
+    title: 'ClipVault',
+    kind: 'macOS app',
+    summary:
+      'A clipboard manager for macOS in the spirit of FlyCut: keeps a searchable history of everything you copy so you can paste it again later. I use it every day.',
+    repo: 'https://github.com/AliMora83/ClipVault',
+    stack: ['macOS', 'Desktop app'],
   },
 ]
 

@@ -25,7 +25,10 @@ body {
 }
 
 .wallpaper {
-  background-color: var(--indigo);
+  background:
+    radial-gradient(900px 600px at 80% 12%, rgba(227, 162, 43, 0.38), transparent 60%),
+    radial-gradient(800px 600px at 8% 30%, rgba(76, 108, 230, 0.5), transparent 60%),
+    linear-gradient(165deg, #2a3d8f 0%, #1d2b6b 45%, #0f1638 100%);
 }
 
 :focus-visible {

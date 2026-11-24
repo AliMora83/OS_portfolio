@@ -2,15 +2,15 @@
 
 Personal portfolio of **Ali Mora**, a designer, developer and founder based in Johannesburg, South Africa.
 
-The site works like a small desktop. You click an icon to open a window for each section:
+The site looks and behaves like a macOS-style desktop, built for recruiters: a Finder window opens on `~/Projects` the moment the page loads, and the Résumé, GitHub and LinkedIn are one click away from anywhere.
 
-- **About:** bio, current roles and certification
-- **Projects:** SmartPress, Kora Tutor, Compound Calculator and Financial Alphabet
-- **Services:** branding, websites and security, and how an engagement runs
-- **Toolkit:** the tools and platforms I work with
-- **Contact:** email and social links
+- **Menu bar, Dock, desktop icons and widgets** (profile and availability, Now building, GitHub)
+- **Finder + Quick Look:** click a project to preview it, press `Space` for Quick Look, double-click or `Enter` to open it. Arrow keys move the selection, `Esc` closes.
+- **Deep links:** `/#/projects/smartpress`, `/#/about`, `/#/toolkit`, `/#/contact`; `/#/desktop` shows the empty desktop
+- **Mobile:** a phone home screen; apps open full-screen
+- **Plain view** (`/#/plain`): everything on one scrolling page
 
-On desktop, windows can be dragged, maximised and closed with `Esc`. On mobile they open full-screen.
+The plan and scope live in [`SPEC.md`](SPEC.md). Artwork (wallpaper, folders, file icons) is original; no Apple assets are used.
 
 ## Tech stack
 
@@ -38,6 +38,9 @@ All personal content is in one file, `src/data/profile.ts`:
 | Bio, roles, certifications | `profile.bio`, `profile.roles`, `profile.credentials` |
 | Email and social links | `profile.email`, `profile.links` |
 | "Now building" ticker | `profile.nowBuilding` |
+| Availability status | `profile.availability` |
+| Résumé link | `profile.resumeUrl` (put the file at `public/resume.pdf`) |
+| Project role, outcome, repo | `projects[].role`, `.outcome`, `.repo` |
 | Projects | `projects` |
 | Services and process | `services` |
 | Toolkit | `skills` |
